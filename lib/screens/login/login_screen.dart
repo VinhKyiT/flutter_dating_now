@@ -141,6 +141,8 @@ class _PasswordInput extends StatelessWidget {
                 : null,
           ),
           obscureText: true,
+          enableSuggestions: false,
+          autocorrect: false,
         );
       },
     );

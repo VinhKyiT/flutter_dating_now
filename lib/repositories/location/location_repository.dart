@@ -5,7 +5,7 @@ import '../../models/models.dart';
 import 'base_location_repository.dart';
 
 class LocationRepository extends BaseLocationRepository {
-  final String key = 'AIzaSyB3Co6zE1W1ycqTfNdqfC1gE_JwN08GGgw';
+  final String key = 'AIzaSyDeO9I_RWb--RYLaGP0h9M8cv-iNNTt3XQ';
   final String types = 'geocode';
 
   @override
