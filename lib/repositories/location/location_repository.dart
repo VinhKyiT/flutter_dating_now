@@ -5,7 +5,7 @@ import '../../models/models.dart';
 import 'base_location_repository.dart';
 
 class LocationRepository extends BaseLocationRepository {
-  final String key = 'AIzaSyCOpv8L34cuVxiiZgIpNGoqbdON_1Xb6Fs';
+  final String key = 'AIzaSyB3Co6zE1W1ycqTfNdqfC1gE_JwN08GGgw';
   final String types = 'geocode';
 
   @override
@@ -14,8 +14,10 @@ class LocationRepository extends BaseLocationRepository {
         'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_id%2Cname%2Cgeometry&input=$location&inputtype=textquery&key=$key';
 
     var response = await http.get(Uri.parse(url));
+    print('Response map: ${response.body}');
     var json = convert.jsonDecode(response.body);
     var results = json['candidates'][0] as Map<String, dynamic>;
+    print('Location result: $results');
     return Location.fromJson(results);
   }
 }
