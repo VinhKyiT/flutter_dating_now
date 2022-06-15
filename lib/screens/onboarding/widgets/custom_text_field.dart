@@ -4,6 +4,7 @@ class CustomTextField extends StatelessWidget {
   final String? hint;
   final String? initialValue;
   final String? errorText;
+  final bool isPassword;
   final Function(String)? onChanged;
   final Function(bool)? onFocusChanged;
   final EdgeInsets padding;
@@ -15,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     this.initialValue = '',
     this.onChanged,
     this.onFocusChanged,
+    this.isPassword = false,
     this.padding = const EdgeInsets.symmetric(horizontal: 20.0),
   }) : super(key: key);
 
@@ -25,6 +27,7 @@ class CustomTextField extends StatelessWidget {
       child: Focus(
         child: TextFormField(
           initialValue: initialValue,
+          obscureText: isPassword,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,

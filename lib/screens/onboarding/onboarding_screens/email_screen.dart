@@ -53,6 +53,7 @@ class EmailTab extends StatelessWidget {
                     onChanged: (value) {
                       context.read<SignupCubit>().passwordChanged(value);
                     },
+                    isPassword: true,
                   );
                 },
               ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dating_now/repositories/location/location_repository.dart';
 import 'package:dating_now/screens/onboarding/widgets/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -65,7 +64,12 @@ class ProfileScreen extends StatelessWidget {
                     url: state.user.imageUrls[0],
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                          topLeft: Radius.zero,
+                          topRight: Radius.zero,
+                        ),
                         gradient: LinearGradient(
                           colors: [
                             Theme.of(context).primaryColor.withOpacity(0.1),
@@ -102,7 +106,7 @@ class ProfileScreen extends StatelessWidget {
                               : Theme.of(context).primaryColor,
                           endColor: state.isEditingOn
                               ? Colors.white
-                              : Theme.of(context).accentColor,
+                              : Theme.of(context).colorScheme.secondary,
                           textColor: state.isEditingOn
                               ? Theme.of(context).primaryColor
                               : Colors.white,
@@ -120,7 +124,7 @@ class ProfileScreen extends StatelessWidget {
                               ? Theme.of(context).primaryColor
                               : Colors.white,
                           endColor: state.isEditingOn
-                              ? Theme.of(context).accentColor
+                              ? Theme.of(context).colorScheme.secondary
                               : Colors.white,
                           textColor: state.isEditingOn
                               ? Colors.white

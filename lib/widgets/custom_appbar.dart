@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dating_now/screens/screens.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
@@ -35,11 +34,10 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 Navigator.popAndPushNamed(context, '/');
               },
               child: Container(
-                child: SvgPicture.asset(
-                  'assets/logo.svg',
-                  height: 50,
-                ),
-              ),
+                  child: Image.asset(
+                'assets/logo.png',
+                height: 50,
+              )),
             ),
           ),
           Expanded(
