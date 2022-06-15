@@ -21,6 +21,7 @@ class AuthRepository extends BaseAuthRepository {
       final user = credential.user;
       return user;
     } catch (_) {}
+    return null;
   }
 
   Future<void> logInWithEmailAndPassword({
@@ -32,6 +33,8 @@ class AuthRepository extends BaseAuthRepository {
         email: email,
         password: password,
       );
+    } on auth.FirebaseAuthException catch (error) {
+      throw Exception(error.message);
     } catch (_) {}
   }
 
