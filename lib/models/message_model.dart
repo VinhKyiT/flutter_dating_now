@@ -31,8 +31,8 @@ class Message extends Equatable {
   static List<Message> messages = [
     Message(
         id: '1',
-        senderId: '1',
-        receiverId: '2',
+        senderId: 'fI2i47nJ3Uez9lF142QAGvJtXk12',
+        receiverId: 'NriuQHjTmXOOH3ZQqNbQNVZz8cZ2',
         message: 'Hey, how are you?',
         dateTime: DateTime.now(),
         timeString: DateFormat('jm').format(DateTime.now())),

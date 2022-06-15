@@ -14,10 +14,18 @@ class LocationRepository extends BaseLocationRepository {
         'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_id%2Cname%2Cgeometry&input=$location&inputtype=textquery&key=$key';
 
     var response = await http.get(Uri.parse(url));
-    print('Response map: ${response.body}');
     var json = convert.jsonDecode(response.body);
-    var results = json['candidates'][0] as Map<String, dynamic>;
-    print('Location result: $results');
-    return Location.fromJson(results);
+    print('Response map status: ${json['status'].toString()}');
+    if (json['status'] == 'OK') {
+      var results = json['candidates'][0] as Map<String, dynamic>;
+      return Location.fromJson(results);
+    } else {
+      var defaultLocation = Location(
+        name: 'Ho Chi Minh',
+        lat: 10.769,
+        lon: 106.68,
+      );
+      return defaultLocation;
+    }
   }
 }

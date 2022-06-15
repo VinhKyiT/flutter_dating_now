@@ -21,12 +21,14 @@ class Chat extends Equatable {
   static List<Chat> chats = [
     Chat(
       id: '1',
-      userId: '1',
-      matchedUserId: '2',
+      userId: 'fI2i47nJ3Uez9lF142QAGvJtXk12',
+      matchedUserId: 'NriuQHjTmXOOH3ZQqNbQNVZz8cZ2',
       messages: Message.messages
           .where((message) =>
-              (message.senderId == 1 && message.receiverId == 2) ||
-              (message.senderId == 2 && message.receiverId == 1))
+              (message.senderId == 'fI2i47nJ3Uez9lF142QAGvJtXk12' &&
+                  message.receiverId == 'NriuQHjTmXOOH3ZQqNbQNVZz8cZ2') ||
+              (message.senderId == 'NriuQHjTmXOOH3ZQqNbQNVZz8cZ2' &&
+                  message.receiverId == 'fI2i47nJ3Uez9lF142QAGvJtXk12'))
           .toList(),
     ),
   ];

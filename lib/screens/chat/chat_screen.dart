@@ -7,15 +7,6 @@ class ChatScreen extends StatelessWidget {
   static const String routeName = '/chat';
   final Match match;
 
-  // static Route route({required UserMatch userMatch}) {
-  //   return MaterialPageRoute(
-  //     settings: RouteSettings(name: routeName),
-  //     builder: (context) => ChatScreen(userMatch: userMatch),
-  //   );
-  // }
-
-  // final UserMatch userMatch;
-
   const ChatScreen({
     Key? key,
     required this.match,
