@@ -4,11 +4,13 @@ import 'package:equatable/equatable.dart';
 import 'models.dart';
 
 class Match extends Equatable {
+  final String? id;
   final String userId;
   final User matchedUser;
   final Chat? chat;
 
   const Match({
+    this.id,
     required this.userId,
     required this.matchedUser,
     this.chat,
@@ -16,10 +18,12 @@ class Match extends Equatable {
 
   static Match fromSnapshot(
     DocumentSnapshot snap,
-    String userId,
+    String? userId,
   ) {
+    print('snapshot match: $snap');
     Match match = Match(
-      userId: userId,
+      id: snap.id,
+      userId: userId ?? snap['user_1'] as String,
       matchedUser: User.fromSnapshot(snap),
     );
     return match;

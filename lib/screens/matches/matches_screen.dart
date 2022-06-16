@@ -49,6 +49,7 @@ class MatchesScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline4,
                     ),
                     MatchesList(inactiveMatches: inactiveMatches),
+                    SizedBox(height: 20),
                     Text(
                       'Your Chats',
                       style: Theme.of(context).textTheme.headline4,

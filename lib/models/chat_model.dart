@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 import 'message_model.dart';
@@ -17,6 +18,21 @@ class Chat extends Equatable {
 
   @override
   List<Object?> get props => [id, userId, matchedUserId, messages];
+
+  static Chat fromSnapshot(
+    DocumentSnapshot snap,
+    String? userId,
+  ) {
+    Chat chat = Chat(
+      id: snap.id,
+      userId: userId ?? snap['userId'] as String,
+      matchedUserId: snap['matchedUserId'] as String,
+      messages: (snap['messages'] as List<Message>)
+          .map((message) => Message.fromSnapshot(message as DocumentSnapshot))
+          .toList(),
+    );
+    return chat;
+  }
 
   static List<Chat> chats = [
     Chat(

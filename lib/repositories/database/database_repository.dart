@@ -20,7 +20,7 @@ class DatabaseRepository extends BaseDatabaseRepository {
 
   @override
   Stream<List<User>> getUsers(User user) {
-    return _firebaseFirestore
+    var result = _firebaseFirestore
         .collection('users')
         // .where('gender', isEqualTo: _selectGender(user))
         .where('gender', whereIn: _selectGender(user))
@@ -28,7 +28,20 @@ class DatabaseRepository extends BaseDatabaseRepository {
         .map((snap) {
       return snap.docs.map((doc) => User.fromSnapshot(doc)).toList();
     });
+    return result;
   }
+
+  // @override
+  // Stream<Chat> getChat(Match match) {
+  //   print('Getting chat from DB');
+  //   return _firebaseFirestore
+  //       .collection('matches')
+  //       .doc(match.id)
+  //       .where('userId', isEqualTo: match.userId)
+  //       .where('matchedUserId', isEqualTo: match.matchedUserId)
+  //       .snapshots()
+
+  // }
 
   @override
   Stream<List<User>> getUsersToSwipe(User user) {
@@ -58,7 +71,7 @@ class DatabaseRepository extends BaseDatabaseRepository {
             if (wasSwipedRight) return false;
             if (isMatch) return false;
             if (!isWithinAgeRange) return false;
-            if (!isWithinDistance) return false;
+            // if (!isWithinDistance) return false;
 
             return true;
           },
@@ -68,8 +81,21 @@ class DatabaseRepository extends BaseDatabaseRepository {
   }
 
   @override
+  Stream<List<Match>> getChat(User user) {
+    var res = _firebaseFirestore
+        .collection('matches')
+        .where('user_1', isEqualTo: user.id)
+        .snapshots()
+        .map((snap) {
+      return snap.docs.map((doc) => Match.fromSnapshot(doc, user.id)).toList();
+    });
+    print('Getting chat from DB, $res');
+    return res;
+  }
+
+  @override
   Stream<List<Match>> getMatches(User user) {
-    return Rx.combineLatest2(
+    var result = Rx.combineLatest2(
       getUser(user.id!),
       getUsers(user),
       (
@@ -83,6 +109,7 @@ class DatabaseRepository extends BaseDatabaseRepository {
         return result;
       },
     );
+    return result;
   }
 
   @override
@@ -95,6 +122,9 @@ class DatabaseRepository extends BaseDatabaseRepository {
       await _firebaseFirestore.collection('users').doc(userId).update({
         'swipeRight': FieldValue.arrayUnion([matchId])
       });
+      await _firebaseFirestore
+          .collection('matches')
+          .add({'user_1': userId, 'user_2': matchId});
     } else {
       await _firebaseFirestore.collection('users').doc(userId).update({
         'swipeLeft': FieldValue.arrayUnion([matchId])

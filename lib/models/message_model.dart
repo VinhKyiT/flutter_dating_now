@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
@@ -27,6 +28,19 @@ class Message extends Equatable {
         dateTime,
         timeString,
       ];
+
+  static Message fromSnapshot(DocumentSnapshot snap) {
+    Message message = Message(
+      id: snap.id,
+      senderId: snap['senderId'] as String,
+      receiverId: snap['receiverId'] as String,
+      message: snap['message'] as String,
+      dateTime: DateTime.fromMillisecondsSinceEpoch(snap['dateTime'] as int),
+      timeString: DateFormat('hh:mm a')
+          .format(DateTime.fromMillisecondsSinceEpoch(snap['dateTime'] as int)),
+    );
+    return message;
+  }
 
   static List<Message> messages = [
     Message(
