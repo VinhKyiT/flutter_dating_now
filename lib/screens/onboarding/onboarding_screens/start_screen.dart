@@ -33,7 +33,7 @@ class StartTab extends StatelessWidget {
                     ),
                     SizedBox(height: 50),
                     Text(
-                      'Welcome to Arrow',
+                      'Welcome to Dating Now',
                       style: Theme.of(context).textTheme.headline2,
                     ),
                     SizedBox(height: 20),

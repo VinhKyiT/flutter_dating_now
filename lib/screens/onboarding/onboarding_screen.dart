@@ -55,7 +55,7 @@ class OnboardingScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: CustomAppBar(
-            title: 'ARROW',
+            title: 'DATING NOW',
             hasActions: false,
           ),
           body: TabBarView(
