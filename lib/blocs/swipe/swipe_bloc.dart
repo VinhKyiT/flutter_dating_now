@@ -96,6 +96,8 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> {
       true,
     );
 
+    print('Swipe Right: ${event.user.id}, this user: $userId');
+
     if (event.user.swipeRight!.contains(userId)) {
       await _databaseRepository.updateUserMatch(
         userId,

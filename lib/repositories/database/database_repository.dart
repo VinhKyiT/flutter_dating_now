@@ -87,7 +87,9 @@ class DatabaseRepository extends BaseDatabaseRepository {
         .where('user_1', isEqualTo: user.id)
         .snapshots()
         .map((snap) {
-      return snap.docs.map((doc) => Match.fromSnapshot(doc, user.id)).toList();
+      return snap.docs
+          .map((doc) => Match.fromSnapshot(doc, user, user.id))
+          .toList();
     });
     print('Getting chat from DB, $res');
     return res;
@@ -111,6 +113,26 @@ class DatabaseRepository extends BaseDatabaseRepository {
     );
     return result;
   }
+
+  // @override
+  // Stream<List<Match>> getMatches(User user) {
+  //   // getUser(user.id!).listen((user) {
+  //   //   print('Getting matches user from DB: $user');
+  //   // });
+  //   // print('useruseruser $user');
+  //   var result = _firebaseFirestore
+  //       .collection('matches')
+  //       .where('user_1', isEqualTo: user.id)
+  //       .snapshots()
+  //       .map((snap) {
+  //     print('data: ${snap.docs[0]}');
+  //     return snap.docs
+  //         .map((doc) => Match.fromSnapshot(doc, user, user.id))
+  //         .toList();
+  //   });
+  //   print('Getting matches from DB, $result');
+  //   return result;
+  // }
 
   @override
   Future<void> updateUserSwipe(

@@ -104,7 +104,7 @@ class SwipeMatchedHomeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Theme.of(context).accentColor,
+                          Theme.of(context).colorScheme.secondary,
                           Theme.of(context).primaryColor,
                         ],
                       ),
@@ -123,7 +123,7 @@ class SwipeMatchedHomeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Theme.of(context).accentColor,
+                          Theme.of(context).colorScheme.secondary,
                           Theme.of(context).primaryColor,
                         ],
                       ),
@@ -141,7 +141,17 @@ class SwipeMatchedHomeScreen extends StatelessWidget {
             CustomElevatedButton(
               text: 'SEND A MESSAGE',
               textColor: Theme.of(context).primaryColor,
-              onPressed: () {},
+              onPressed: () {
+                AlertDialog(
+                    content: Text('This feature is on coming'),
+                    title: Text('Coming soon'),
+                    actions: [
+                      FlatButton(
+                        child: Text('OK'),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ]);
+              },
               beginColor: Colors.white,
               endColor: Colors.white,
             ),
@@ -152,7 +162,7 @@ class SwipeMatchedHomeScreen extends StatelessWidget {
               onPressed: () {
                 context.read<SwipeBloc>().add(LoadUsers());
               },
-              beginColor: Theme.of(context).accentColor,
+              beginColor: Theme.of(context).colorScheme.secondary,
               endColor: Theme.of(context).primaryColor,
             ),
           ],
@@ -210,7 +220,7 @@ class SwipeLoadedHomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ChoiceButton.small(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 icon: Icons.clear_rounded,
                 onTap: () {
                   context.read<SwipeBloc>()

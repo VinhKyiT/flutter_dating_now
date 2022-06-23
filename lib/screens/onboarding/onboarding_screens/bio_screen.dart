@@ -54,18 +54,130 @@ class BioTab extends StatelessWidget {
                     CustomTextHeader(text: 'What Do You Like?'),
                     Row(
                       children: [
-                        CustomTextContainer(text: 'MUSIC'),
-                        CustomTextContainer(text: 'ECONOMICS'),
-                        CustomTextContainer(text: 'POLITICS'),
-                        CustomTextContainer(text: 'ART'),
+                        InkWell(
+                          child: CustomTextContainer(text: 'MUSIC'),
+                          onTap: () {
+                            context.read<OnboardingBloc>().add(
+                                  UpdateUser(
+                                    user: state.user.copyWith(
+                                      interests: [
+                                        ...state.user.interests,
+                                        'MUSIC',
+                                      ],
+                                    ),
+                                  ),
+                                );
+                          },
+                        ),
+                        InkWell(
+                          child: CustomTextContainer(text: 'ECONOMICS'),
+                          onTap: () {
+                            context.read<OnboardingBloc>().add(
+                                  UpdateUser(
+                                    user: state.user.copyWith(
+                                      interests: [
+                                        ...state.user.interests,
+                                        'ECONOMICS',
+                                      ],
+                                    ),
+                                  ),
+                                );
+                          },
+                        ),
+                        InkWell(
+                          child: CustomTextContainer(text: 'READING'),
+                          onTap: () {
+                            context.read<OnboardingBloc>().add(
+                                  UpdateUser(
+                                    user: state.user.copyWith(
+                                      interests: [
+                                        ...state.user.interests,
+                                        'READING',
+                                      ],
+                                    ),
+                                  ),
+                                );
+                          },
+                        ),
+                        InkWell(
+                          child: CustomTextContainer(text: 'ART'),
+                          onTap: () {
+                            context.read<OnboardingBloc>().add(
+                                  UpdateUser(
+                                    user: state.user.copyWith(
+                                      interests: [
+                                        ...state.user.interests,
+                                        'ART',
+                                      ],
+                                    ),
+                                  ),
+                                );
+                          },
+                        ),
                       ],
                     ),
                     Row(
                       children: [
-                        CustomTextContainer(text: 'NATURE'),
-                        CustomTextContainer(text: 'HIKING'),
-                        CustomTextContainer(text: 'FOOTBALL'),
-                        CustomTextContainer(text: 'MOVIES'),
+                        InkWell(
+                          child: CustomTextContainer(text: 'SINGING'),
+                          onTap: () {
+                            context.read<OnboardingBloc>().add(
+                                  UpdateUser(
+                                    user: state.user.copyWith(
+                                      interests: [
+                                        ...state.user.interests,
+                                        'SINGING',
+                                      ],
+                                    ),
+                                  ),
+                                );
+                          },
+                        ),
+                        InkWell(
+                          child: CustomTextContainer(text: 'DRINK'),
+                          onTap: () {
+                            context.read<OnboardingBloc>().add(
+                                  UpdateUser(
+                                    user: state.user.copyWith(
+                                      interests: [
+                                        ...state.user.interests,
+                                        'DRINK',
+                                      ],
+                                    ),
+                                  ),
+                                );
+                          },
+                        ),
+                        InkWell(
+                          child: CustomTextContainer(text: 'SOCCER'),
+                          onTap: () {
+                            context.read<OnboardingBloc>().add(
+                                  UpdateUser(
+                                    user: state.user.copyWith(
+                                      interests: [
+                                        ...state.user.interests,
+                                        'SOCCER',
+                                      ],
+                                    ),
+                                  ),
+                                );
+                          },
+                        ),
+                        InkWell(
+                          child: CustomTextContainer(text: 'MOVIES'),
+                          onTap: () {
+                            context.read<OnboardingBloc>().add(
+                                  UpdateUser(
+                                    user: state.user.copyWith(
+                                      interests: [
+                                        ...state.user.interests,
+                                        'MOVIES',
+                                      ],
+                                    ),
+                                  ),
+                                );
+                          },
+                        ),
                       ],
                     ),
                   ],

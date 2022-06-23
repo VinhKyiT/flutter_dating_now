@@ -18,9 +18,11 @@ class Match extends Equatable {
 
   static Match fromSnapshot(
     DocumentSnapshot snap,
+    User matchedUser,
     String? userId,
   ) {
     print('snapshot match: $snap');
+
     Match match = Match(
       id: snap.id,
       userId: userId ?? snap['user_1'] as String,

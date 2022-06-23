@@ -38,7 +38,7 @@ class StartTab extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     Text(
-                      'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
+                      'Welcome to Dating Now. This is an awesome app that helps you find your soulmate. Let\'s get started to see what you can find!',
                       style: Theme.of(context)
                           .textTheme
                           .headline6!
