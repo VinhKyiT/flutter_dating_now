@@ -61,7 +61,9 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 10),
                   UserImage.medium(
-                    url: state.user.imageUrls[0],
+                    url: state.user.imageUrls.length == 0
+                        ? null
+                        : state.user.imageUrls[0],
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
@@ -312,6 +314,13 @@ class _Location extends StatelessWidget {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
         state as ProfileLoaded;
+        final marker = Marker(
+          markerId: MarkerId(state.user.location!.placeId),
+          position: LatLng(
+            state.user.location!.lat.toDouble(),
+            state.user.location!.lon.toDouble(),
+          ),
+        );
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -355,6 +364,7 @@ class _Location extends StatelessWidget {
               height: 300,
               child: GoogleMap(
                 myLocationEnabled: true,
+                markers: Set<Marker>.of([marker]),
                 myLocationButtonEnabled: false,
                 onMapCreated: (GoogleMapController controller) {
                   context.read<ProfileBloc>().add(
@@ -396,11 +406,28 @@ class _Interests extends StatelessWidget {
               style: Theme.of(context).textTheme.headline3,
             ),
             Row(
-              children: [
-                CustomTextContainer(text: 'MUSIC'),
-                CustomTextContainer(text: 'ECONOMICS'),
-                CustomTextContainer(text: 'FOOTBALL'),
-              ],
+              children: state.user.interests
+                  .map((interest) => Container(
+                        padding: const EdgeInsets.all(8.0),
+                        margin: const EdgeInsets.only(top: 5.0, right: 5.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          gradient: LinearGradient(
+                            colors: [
+                              Theme.of(context).primaryColor,
+                              Theme.of(context).colorScheme.secondary,
+                            ],
+                          ),
+                        ),
+                        child: Text(
+                          interest,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6!
+                              .copyWith(color: Colors.white),
+                        ),
+                      ))
+                  .toList(),
             ),
             SizedBox(height: 10),
           ],

@@ -60,9 +60,17 @@ class PicturesTab extends StatelessWidget {
                     CustomButton(
                       text: 'NEXT STEP',
                       onPressed: () {
-                        context
-                            .read<OnboardingBloc>()
-                            .add(ContinueOnboarding(user: state.user));
+                        if (imageCount >= 2) {
+                          context
+                              .read<OnboardingBloc>()
+                              .add(ContinueOnboarding(user: state.user));
+                        } else {
+                          Scaffold.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Please add at least 2 pictures'),
+                            ),
+                          );
+                        }
                       },
                     ),
                   ],

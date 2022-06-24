@@ -48,7 +48,7 @@ class EmailTab extends StatelessWidget {
                   return CustomTextField(
                     hint: 'ENTER YOUR PASSWORD',
                     errorText: state.password.invalid
-                        ? 'Password must contain at least 8 characters and 1 letter'
+                        ? 'Password must have at least 8 characters, 1 letter'
                         : null,
                     onChanged: (value) {
                       context.read<SignupCubit>().passwordChanged(value);

@@ -20,6 +20,13 @@ class LocationTab extends StatelessWidget {
           );
         }
         if (state is OnboardingLoaded) {
+          final marker = Marker(
+            markerId: MarkerId(state.user.location!.placeId),
+            position: LatLng(
+              state.user.location!.lat.toDouble(),
+              state.user.location!.lon.toDouble(),
+            ),
+          );
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 50),
             child: Column(
@@ -58,6 +65,7 @@ class LocationTab extends StatelessWidget {
                 Expanded(
                   child: GoogleMap(
                     myLocationEnabled: true,
+                    markers: Set<Marker>.of([marker]),
                     myLocationButtonEnabled: false,
                     onMapCreated: (GoogleMapController controller) {
                       context.read<OnboardingBloc>().add(
